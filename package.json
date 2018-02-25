@@ -1,0 +1,90 @@
+{
+  "name": "generator-coffee-mithril",
+  "version": "0.0.0",
+  "description": "Generate a mithril project using CoffeeScript, ES6, and Sass.",
+  "homepage": "",
+  "author": {
+    "name": "Jim Hessin",
+    "email": "jhessin@gmail.com",
+    "url": "http://www.grillbrickstudios.com"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "mithril",
+    "mithril-generator",
+    "coffee",
+    "coffee-generator",
+    "coffeescript",
+    "coffeescript-generator",
+    "sass",
+    "sass-generator",
+    "webpack",
+    "webpack-generator",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "yeoman-test": "^1.7.0",
+    "yeoman-assert": "^3.1.0",
+    "coveralls": "^2.13.1",
+    "nsp": "^2.6.3",
+    "eslint": "^4.1.0",
+    "prettier": "^1.7.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.1",
+    "eslint-config-prettier": "^2.4.0",
+    "eslint-plugin-prettier": "^2.2.0",
+    "eslint-config-xo": "^0.18.2",
+    "jest": "^22.0.6"
+  },
+  "dependencies": {
+    "yeoman-generator": "^2.0.1",
+    "chalk": "^2.1.0",
+    "yosay": "^2.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "prepublish": "nsp check",
+    "pretest": "eslint .",
+    "precommit": "lint-staged",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo",
+      "prettier"
+    ],
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "printWidth": 90
+        }
+      ]
+    },
+    "plugins": [
+      "prettier"
+    ]
+  },
+  "repository": "jhessin/generator-coffee-mithril",
+  "license": "GPL-3.0"
+}
