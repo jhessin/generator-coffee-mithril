@@ -25,3 +25,5 @@ export User =
       url: "https://rem-rest-api.herokuapp.com/api/users/#{User.current.id}"
       data: User.current
       withCredentials: true
+    .then ->
+      User.loadList()
