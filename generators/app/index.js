@@ -54,6 +54,10 @@ module.exports = class extends Generator {
       this.templatePath('webpack.config.coffee'),
       this.destinationPath('webpack.config.coffee')
     );
+    this.fs.copy(
+      this.templatePath('coffeelint.json'),
+      this.destinationPath('coffeelint.json')
+    );
   }
 
   install() {
