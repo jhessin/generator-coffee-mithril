@@ -12,12 +12,12 @@ export class UserList
     m '.ui.segment',
       m '.ui.relaxed.divided.list.huge',
         for user in User.list
-          m '.item',
+          m 'a.item.animate',
+            href: "/edit/#{user.id}"
+            oncreate: m.route.link
             m 'img.ui.avatar.image',
               src: userImage
-            m 'a.content',
-              href: "/edit/#{user.id}"
-              oncreate: m.route.link
+            m '.content',
               m '.header',
                 user.firstName
               user.lastName
