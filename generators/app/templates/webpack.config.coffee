@@ -29,6 +29,10 @@ module.exports =
       ]
     }
     {
+      test: /\.(woff|woff2|eot|ttf|otf)$/,
+      loader: 'file-loader'
+    }
+    {
       test: /\.(coffee|cson)$/
       use:[
         loader: 'coffee-loader'
@@ -41,7 +45,7 @@ module.exports =
   resolve:
     extensions: [
       '.js', '.json'
-      '.coffee', '.cson', '.sass'
+      '.coffee', '.cson', '.sass', '.scss'
     ]
   plugins: [
     new HtmlWebpackPlugin()

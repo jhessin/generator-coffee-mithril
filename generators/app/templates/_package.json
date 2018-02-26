@@ -11,6 +11,8 @@
   "dependencies": {
     "mithril": "^1.1.6",
     "path": "^0.12.7",
+    "semantic-ui-css": "^2.3.0",
+    "semantic-ui-sass": "^2.2.11",
     "webpack": "^3.11.0"
   },
   "devDependencies": {

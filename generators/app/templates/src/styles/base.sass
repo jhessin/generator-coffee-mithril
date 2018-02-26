@@ -2,16 +2,16 @@
 // body, *, and any simple class customizations
 // that may be used app-wide
 
+// This is broken
+// @import "~semantic-ui-sass/semantic-ui.scss"
+
+// Using this instead
+@import "~semantic-ui-css/semantic.min.css"
+@import 'keyframes'
+
 body,.input,.button
   font: normal 16px Verdana
   margin: 0
 
-.small-image
-  height: 30px
-  width: 30px
-  display: inline-block
-
-button
-  box-shadow: 3px 3px 5px 6px #ccc
-  &:active
-    animation: down 1s step-start 1
+a, .button
+  +animate

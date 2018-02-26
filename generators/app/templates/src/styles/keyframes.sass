@@ -1,9 +1,17 @@
 // All keyframe animations.
 
+$shadow: 1px 1px 3px 3px #ccc
+
+=animate()
+  display: block
+  box-shadow: $shadow
+  &:active
+    animation: down 1s step-start
+
 @keyframes down
   0%
     transform: translate(0, 0)
-    box-shadow: 3px 3px 5px 6px #ccc
+    box-shadow: $shadow
   100%
-    transform: translate(3px, 5px)
+    transform: translate(1px, 3px)
     box-shadow: none
