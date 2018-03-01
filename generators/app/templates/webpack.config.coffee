@@ -7,6 +7,7 @@ module.exports =
   output:
     path: path.resolve(__dirname, 'bin')
     filename: 'bundle.js'
+  devtool: 'inline-source-map'
   devServer:
     contentBase: path.join(__dirname, 'bin')
     port: 3000
@@ -33,7 +34,11 @@ module.exports =
       loader: 'file-loader'
     }
     {
-      test: /\.(coffee|cson)$/
+      test: /\.cson$/
+      loader: 'cson-loader'
+    }
+    {
+      test: /\.(coffee)$/
       use:[
         loader: 'coffee-loader'
         options:
@@ -48,8 +53,8 @@ module.exports =
       '.coffee', '.cson', '.sass', '.scss'
     ]
     modules: [
-      "node_modules"
-      "src"
+      'src'
+      'node_modules'
     ]
   plugins: [
     new HtmlWebpackPlugin()
