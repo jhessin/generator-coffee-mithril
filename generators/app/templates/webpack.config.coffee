@@ -47,6 +47,10 @@ module.exports =
       '.js', '.json'
       '.coffee', '.cson', '.sass', '.scss'
     ]
+    modules: [
+      "node_modules"
+      "src"
+    ]
   plugins: [
     new HtmlWebpackPlugin()
   ]

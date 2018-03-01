@@ -1,5 +1,5 @@
 import m from 'mithril'
-import { User } from '../models'
+import { User } from 'models'
 
 # To customize the style of this component modify 'src/styles/userForm.sass'
 

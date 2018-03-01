@@ -1,5 +1,5 @@
 import m from 'mithril'
-import { Layout, UserList, UserForm } from './views'
+import { Layout, UserList, UserForm } from 'views'
 import './styles'
 
 render = (component)->

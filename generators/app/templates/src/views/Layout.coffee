@@ -1,6 +1,6 @@
 import m from 'mithril'
-import userImage from '../images/user.jpg'
-import { User } from '../models'
+import userImage from 'images/user.jpg'
+import { User } from 'models'
 
 # To customize the style of this component modify 'src/styles/layout.sass'
 

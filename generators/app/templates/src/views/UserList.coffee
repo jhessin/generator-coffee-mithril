@@ -1,7 +1,7 @@
 import m from 'mithril'
-import { User } from '../models'
+import { User } from 'models'
 # import 'semantic-ui-css/semantic.min.css'
-import userImage from '../images/user.jpg'
+import userImage from 'images/user.jpg'
 
 # To customize the style of this component modify 'src/styles/userList.sass'
 
