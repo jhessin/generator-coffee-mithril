@@ -2,14 +2,12 @@
 // body, *, and any simple class customizations
 // that may be used app-wide
 
-
-// Using this instead
-@import "~semantic-ui-offline/semantic.min.css"
-@import 'keyframes'
+// // Using this instead
+@require "~semantic-ui-stylus/dist/semantic.min.css"
 
 body,.input,.button
   font: normal 16px Verdana
   margin: 0
 
 .animate
-  +animate
+  animate()

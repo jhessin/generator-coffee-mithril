@@ -22,12 +22,23 @@ module.exports =
       ]
     }
     {
-      test: /\.(sass|scss|css)$/
-      use:[
-        { loader: 'style-loader' }
-        { loader: 'css-loader' }
-        { loader: 'sass-loader' }
+      test: /\.css$/
+      use: [
+        'style-loader'
+        {
+          loader: 'css-loader'
+          options:
+            modules: true
+        }
       ]
+    }
+    {
+      test: /\.styl$/
+      loader:
+        'style-loader!\
+        css-loader!\
+        stylus-loader?\
+        paths=node_modules/bootstrap-stylus/stylus/'
     }
     {
       test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -50,12 +61,15 @@ module.exports =
   resolve:
     extensions: [
       '.js', '.json'
-      '.coffee', '.cson', '.sass', '.scss'
+      '.coffee', '.cson'
+      '.styl'
     ]
     modules: [
       'src'
       'node_modules'
     ]
   plugins: [
+    new webpack.HotModuleReplacementPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
     new HtmlWebpackPlugin()
   ]
