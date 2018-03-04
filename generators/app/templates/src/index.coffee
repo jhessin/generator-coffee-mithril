@@ -1,4 +1,9 @@
 import m from 'mithril'
-import { Nav } from 'Nav'
+import { wrap } from 'utils'
+import { Layout, UserList, UserForm } from 'views'
+import 'styles'
 
-m.route document.body, '/', Nav
+m.route.prefix '' # Hide the silly hashbang'#!'
+m.route document.body, '/',
+  '/': wrap Layout, UserList
+  '/edit/:id': wrap Layout, UserForm
