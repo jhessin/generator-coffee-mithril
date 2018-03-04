@@ -1,12 +1,15 @@
 // All keyframe animations.
 
-$shadow: 1px 1px 3px 3px #ccc
+shadow = 1px 1px 3px 3px #ccc
 
 animate()
   display: block
-  box-shadow: $shadow
+  box-shadow: shadow
   &:active
     animation: down 1s step-start
+
+.animate
+  animate()
 
 @keyframes down
   0%

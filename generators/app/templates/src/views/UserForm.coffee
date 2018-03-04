@@ -26,5 +26,5 @@ export class UserForm
           oninput: m.withAttr 'value', (value) ->
             User.current.lastName = value
           value: User.current.lastName
-      m 'button.ui.huge.button\
+      m 'button.ui.huge.button.animate\
         [type=submit]', 'Save'

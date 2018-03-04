@@ -6,7 +6,7 @@ import { User } from 'models'
 
 export class Layout
   view: (vnode)->
-    m '.ui.container',
+    m '.app.ui.container',
       m '.ui.huge.breadcrumb',
         if m.route.get() is '/'
           m '.section.active', 'Users'
