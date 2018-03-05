@@ -7,6 +7,7 @@ export route =
 
   # This is specific to my example but you can do whatever you want
   id: null
+  params: {}
 
   # Get the current path (for a similar api to mithrils)
   get: ->
@@ -19,6 +20,15 @@ export route =
     if params
       @id = params[1]
     else @id = null
+
+    # Pull out any query string and save it as params
+    params = /\?([\w=&]+)/.exec(path)
+    if params
+      args = params.split('&')
+      for value in args
+        split = value.split('=')
+        @params[split[0]] = split[1]
+    @current = path
 
     # here is where we actually update the path.
     @current = newPath
