@@ -2,14 +2,14 @@
 
 shadow = 1px 1px 3px 3px #ccc
 
-animate()
+animate =
   display: block
   box-shadow: shadow
   &:active
     animation: down 1s step-start
 
 .animate
-  animate()
+  {animate}
 
 @keyframes down
   0%
@@ -18,3 +18,9 @@ animate()
   100%
     transform: translate(1px, 3px)
     box-shadow: none
+
+@keyframes App-logo-spin
+  from
+    transform: rotate(0deg);
+  to
+    transform: rotate(360deg)
