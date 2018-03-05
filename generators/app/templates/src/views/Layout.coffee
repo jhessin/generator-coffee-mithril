@@ -19,7 +19,7 @@ export class Layout
         m "div.item#{cntrl.isActive('/')}",
           onclick: -> cntrl.setActive('/')
           'Home'
-        m "div.item#{cntrl.isActive('/users')}",
+        m "div.item#{cntrl.isActive(/users/)}",
           onclick: -> cntrl.setActive('/users')
           'Users'
       m '.ui.bottom.attached',

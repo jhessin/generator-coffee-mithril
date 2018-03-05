@@ -1,5 +1,5 @@
 import m from 'mithril'
-import { User } from 'models'
+import { User, route } from 'models'
 
 # To customize the style of this component modify 'src/styles/userForm.sass'
 
@@ -10,7 +10,7 @@ export class UserForm
       onsubmit: (e) ->
         e.preventDefault()
         User.save()
-        m.route.set('/')
+        route.set('/users')
       m '.field',
         m 'label', 'First Name'
         m 'input\
