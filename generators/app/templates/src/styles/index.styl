@@ -1,6 +1,13 @@
+// This folder holds all of the styles for your app.
+// You 'can' technically use inline styles, however you
+// lose quite a bit of mithril's elegance with . and # notation
+// when you do that. I chose to use stylus as it is the most
+// feature rich bracketless styling languages.
+
+// I use semantic-ui for much of the styling.
 @require '~semantic-ui-stylus/dist/semantic.min.css'
 
+// I've included several files to show the modularity of this system.
 @require './base'
 @require './home'
 @require './keyframes'
-@require './users'

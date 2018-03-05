@@ -6,10 +6,4 @@ import 'styles'
 # information on the tools available for mithril including
 # m.render() and m.route()
 
-# m.route.prefix '' # Hide the silly hashbang'#!'
-# m.route document.body, '/',
-#   '/': wrap Layout, Home
-#   '/users': wrap Layout, Breadcrumb, UserList
-#   '/edit/:id': wrap Layout, Breadcrumb, UserForm
-# m.render document.body, 'Hello World'
 m.mount document.body, App

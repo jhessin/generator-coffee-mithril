@@ -2,6 +2,7 @@ import m from 'mithril'
 import userImage from 'images/user.jpg'
 import { User, route } from 'models'
 
+# This is the main wrapper for the Users Demo from mithril.
 export class Breadcrumb
   view: (vnode)->
     m '.app.ui.container',

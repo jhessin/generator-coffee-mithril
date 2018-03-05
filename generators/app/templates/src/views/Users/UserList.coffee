@@ -2,7 +2,7 @@ import m from 'mithril'
 import { User, route } from 'models'
 import userImage from 'images/user.jpg'
 
-# To customize the style of this component modify 'src/styles/userList.sass'
+# Loads and displays the User List.
 
 export class UserList
   oninit:->

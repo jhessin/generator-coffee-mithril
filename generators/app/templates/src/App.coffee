@@ -2,6 +2,8 @@ import m from 'mithril'
 import { route } from 'models'
 import { Home, Breadcrumb, UserList, UserForm } from 'views'
 
+# The main navigation header.
+
 export class App
   view: ->
     m '.app.ui.container',

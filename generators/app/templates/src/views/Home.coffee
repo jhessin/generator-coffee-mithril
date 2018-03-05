@@ -1,6 +1,8 @@
 import m from 'mithril'
 import logo from 'images/logo.svg'
 
+# This is the Home page taken directly from create-react-app
+
 export class Home
   view: ->
     m 'div.App',
@@ -15,3 +17,14 @@ export class Home
         m 'code',
           'src/App.coffee'
         ' and save to reload.'
+        m 'br'
+        'Be sure to check out the homepages for '
+        m 'a[href=http://coffeescript.org/]', 'CoffeeScript'
+        ' and '
+        m 'a[href=https://mithril.js.org/]', 'Mithril.'
+        m 'br'
+        'They have a ton of tools, tutorials, and information.'
+        m 'br'
+        'Most of the styling and layout of this demo page was done with '
+        m 'a[href=https://semantic-ui.com/]', 'semantic-ui'
+        '.'

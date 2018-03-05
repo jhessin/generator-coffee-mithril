@@ -1,5 +1,10 @@
 import m from 'mithril'
 
+# This holds the user list and
+# the currently selected user info.
+# It also handles the network queries to update
+# the userlist and related data.
+
 export User =
   list: []
   loadList: ->

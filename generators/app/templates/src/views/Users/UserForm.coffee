@@ -1,7 +1,8 @@
 import m from 'mithril'
 import { User, route } from 'models'
 
-# To customize the style of this component modify 'src/styles/userForm.sass'
+# This is the User Form where you can actually change the name of a user.
+# This is really dummy data and it will be lost when restarting your browser.
 
 export class UserForm
   oninit: (vnode) -> User.load vnode.attrs.id
