@@ -13,7 +13,7 @@ export class UserList
         User.list.map (user) ->
           { id } = user
           m 'a.item.animate',
-            onclick: -> route.set("/users/#{id}")
+            onclick: -> route.set("/users/?id=#{id}")
             m 'img.ui.avatar.image',
               src: userImage
             m '.content',

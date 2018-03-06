@@ -18,8 +18,8 @@ export class App
         m Home
       m ".ui.bottom.attached.tab.segment#{route.isActive(/users/)}",
         m Breadcrumb,
-          if route.id
+          if route.params.id
             m UserForm,
-              id: route.id
+              id: route.params.id
           else
             m UserList
