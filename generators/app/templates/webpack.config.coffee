@@ -1,6 +1,8 @@
 HtmlWebpackPlugin = require 'html-webpack-plugin'
 webpack = require 'webpack'
 path = require 'path'
+CSON = require 'cson'
+manifest = CSON.load './src/manifest.cson'
 
 module.exports =
   entry: './src/index.coffee'
@@ -71,5 +73,5 @@ module.exports =
   plugins: [
     new webpack.HotModuleReplacementPlugin()
     new webpack.NoEmitOnErrorsPlugin()
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin manifest
   ]

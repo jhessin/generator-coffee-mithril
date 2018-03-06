@@ -1,7 +1,7 @@
 {
   "name": "test-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.coffee",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
@@ -12,7 +12,8 @@
     "mithril": "^1.1.6",
     "path": "^0.12.7",
     "semantic-ui-stylus": "^1.8.1",
-    "webpack": "^3.11.0"
+    "webpack": "^3.11.0",
+    "cson": "^5.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
