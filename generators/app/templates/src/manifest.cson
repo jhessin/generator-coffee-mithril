@@ -17,7 +17,7 @@ title: 'My awesome App'
 # Note ALL paths are relative to the webpack file and not this one.
 
 # can be true | false | 'head' | 'body'
-inject: true
+# inject: true
 
 # add favicons
 # favicon: ''
@@ -25,12 +25,12 @@ inject: true
 # This throws an error for some reason.
 # minify: true
 
-hash: false
-cache: true
-showErrors: true
+# hash: false
+# cache: true
+# showErrors: true
 
 # should links be self-closing?
-xhtml: false
+# xhtml: false
 
 # There are a few more about 'chunks' (whatever those are?)
 # and there are a ton of plugins you can use as well.
