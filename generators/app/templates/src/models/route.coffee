@@ -19,8 +19,8 @@ export route =
     array = path.split(';')
     for item in array
       kv = item.split('=')
-      if kv[0] = 'path'
-        @set(kv[1..].join('=') ? '/')
+      if kv[0] is 'path'
+        @set(kv[1..].join('=') or '/')
 
   # Get the current path (for a similar api to mithrils)
   get: ->

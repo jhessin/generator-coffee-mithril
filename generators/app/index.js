@@ -49,6 +49,16 @@ module.exports = class extends Generator {
       this.props
     );
     this.fs.copy(this.templatePath('src'), this.destinationPath('src'));
+
+    // Remove test code
+    this.spawnCommandSync('rm', ['-rf', 'src/manifest.cson']);
+
+    // Copy template manifest
+    this.fs.copyTpl(
+      this.templatePath('_manifest.cson'),
+      this.destinationPath('src/manifest.cson'),
+      this.props
+    );
     this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
     this.fs.copy(
       this.templatePath('webpack.config.coffee'),
