@@ -4,17 +4,64 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-coffee-mithril using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+### Option 1: Global node install
+
+Just install [Yeoman](http://yeoman.io) and generator-coffee-mithril using [yarn](https://yarnpkg.com) or [npm](https://www.npmjs.com/). I recommend yarn. (I assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 yarn global add yo generator-coffee-mithril
 ```
 
-Then generate your new project:
+### Option 2: Latest github repo
+
+If you want to build the latest and greatest version of the generator you can follow these steps.
+
+> WARNING: I sometimes will commit broken code temporarily when switching between home and work computers. I will usually put a 'BROKEN' commit message to show this and you can always roll back a commit to get a working version.
+
+You still need yeoman for this:
 
 ```bash
-yo coffee-mithril
+yarn global add yo
 ```
+
+But instead of installing the generator through npm/yarn you simply clone this repo anywhere on your hard drive:
+
+```bash
+git clone git@github.com:jhessin/generator-coffee-mithril.git
+```
+
+or if you don't use ssh:
+
+```bash
+git clone https://github.com/jhessin/generator-coffee-mithril.git
+```
+
+Then:
+
+```bash
+cd generator-coffee-mithril
+yarn link
+```
+
+This makes the generator available to yeoman. When a new update comes out you can simply go back to this directory and run:
+
+```bash
+git pull
+```
+
+## Usage
+
+To generate a coffee-mithril project:
+
+```bash
+yo coffee-mithril [project-name]
+```
+
+## Update Roadmap
+
+Prior to v2.0 I plan to integrate some postCSS plugins and polish up the sample. My goal for this project is for you to be able to accomplish anything without touching either HTML, CSS, or JavaScript but using purely CoffeeScript, Stylus, and CSON.
+
+v2.0 will include several sub-generators for views/models/styles that may or may not intermingle with eachother. I haven't decided if I'm going to have stylesheets generated when creating a view, or if I will have a separate stylesheet generator or both. Nevertheless I want to tweak the example app and build a good foundation before going any further.
 
 ## Getting To Know Yeoman
 

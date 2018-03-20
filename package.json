@@ -3,7 +3,6 @@
   "version": "1.2.2",
   "description":
     "Generate a mithril project using CoffeeScript, ES6, and Sass.",
-  "homepage": "",
   "author": {
     "name": "Jim Hessin",
     "email": "jhessin@gmail.com",
