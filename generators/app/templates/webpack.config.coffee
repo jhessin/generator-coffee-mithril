@@ -1,8 +1,11 @@
 HtmlWebpackPlugin = require 'html-webpack-plugin'
+HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 webpack = require 'webpack'
 path = require 'path'
 CSON = require 'cson'
 manifest = CSON.load './src/manifest.cson'
+
+{ htmlConfig, externals } = manifest
 
 module.exports =
   entry: './src/index.coffee'
@@ -32,15 +35,39 @@ module.exports =
           options:
             modules: true
         }
+        {
+          loader: 'postcss-loader'
+          options:
+            sourceMap: 'inline'
+        }
       ]
     }
     {
       test: /\.styl$/
-      loader:
-        'style-loader!\
-        css-loader!\
-        stylus-loader?\
-        paths=node_modules/bootstrap-stylus/stylus/'
+      use:[
+        {
+          loader: 'style-loader'
+          options:
+            sourceMap: true
+        }
+        {
+          loader: 'css-loader'
+          options:
+            sourceMap: true
+            importLoaders: 1
+        }
+        {
+          loader: 'postcss-loader'
+          options:
+            sourceMap: 'inline'
+        }
+        {
+          loader: 'stylus-loader'
+          options:
+            sourceMap: true
+            paths:'node_modules/bootstrap-stylus/stylus/'
+        }
+      ]
     }
     {
       test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -64,7 +91,7 @@ module.exports =
     extensions: [
       '.js', '.json'
       '.coffee', '.cson'
-      '.styl'
+      '.styl', '.css'
     ]
     modules: [
       'src'
@@ -73,5 +100,6 @@ module.exports =
   plugins: [
     new webpack.HotModuleReplacementPlugin()
     new webpack.NoEmitOnErrorsPlugin()
-    new HtmlWebpackPlugin manifest
+    new HtmlWebpackPlugin htmlConfig
+    new HtmlWebpackExternalsPlugin {externals}
   ]

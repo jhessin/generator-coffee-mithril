@@ -58,6 +58,10 @@ module.exports = class extends Generator {
       this.templatePath('coffeelint.json'),
       this.destinationPath('coffeelint.json')
     );
+    this.fs.copy(
+      this.templatePath('postcss.config.js'),
+      this.destinationPath('postcss.config.js')
+    );
   }
 
   install() {

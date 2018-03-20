@@ -1,0 +1,33 @@
+# This is the manifest for values that are sent directly
+# to html-webpack-plugin for details on all the options available look here:
+
+# NOTE: this file is loaded before the dev server so you will need
+# to restart the dev server if editing it.
+
+# This goes to the html-webpack-plugin. Check out
+# https://github.com/jantimon/html-webpack-plugin#options
+# for more info.
+htmlConfig:
+  title: 'My awesome App'
+
+# Here are some options that get passed to html-webpack-externals-plugin
+# this is useful for CDN's
+externals: [
+  {
+    module: 'jquery'
+    entry:
+      path: 'https://code.jquery.com/jquery-3.3.1.min.js'
+      attributes:
+        integrity: 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
+        crossorigin: 'anonymous'
+    global: 'jQuery'
+  }
+]
+
+# Finally we have the config for postCSS
+postcss:
+  plugins:
+    'postcss-use': {}
+    'css-mqpacker': {}
+    'autoprefixer': {}
+    'cssnano': {}

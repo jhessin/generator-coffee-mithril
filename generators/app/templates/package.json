@@ -6,14 +6,21 @@
   "scripts": {
     "start": "webpack-dev-server",
     "start:open": "webpack-dev-server --open",
-    "build": "webpack"
+    "build": "webpack",
+    "killall": "killall node"
   },
   "dependencies": {
+    "autoprefixer": "^8.1.0",
+    "cson": "^5.1.0",
+    "css-mqpacker": "^6.0.2",
+    "cssnano": "^3.10.0",
+    "html-webpack-externals-plugin": "^3.7.0",
     "mithril": "^1.1.6",
     "path": "^0.12.7",
+    "postcss": "^6.0.20",
+    "postcss-use": "^3.0.0",
     "semantic-ui-stylus": "^1.8.1",
-    "webpack": "^3.11.0",
-    "cson": "^5.1.0"
+    "webpack": "^3.11.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
