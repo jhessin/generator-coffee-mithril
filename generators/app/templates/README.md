@@ -24,11 +24,15 @@ Start (and open) development server:
 yarn start:open
 ```
 
-Build:
+Build/Clean/Rebuild:
 
 ```bash
+yarn clean
 yarn build
+yarn rebuild
 ```
+
+
 
 If the dev server doesn't load there may be a server running already. To kill any active node server you can run (on *nix systems - not sure about windows):
 

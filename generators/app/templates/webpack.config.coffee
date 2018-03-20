@@ -21,10 +21,21 @@ module.exports =
     {
       test: /\.(gif|png|jpe?g|svg)$/i
       use: [
-        'file-loader'
-        loader: 'image-webpack-loader'
-        options:
-          bypassOnDebug: true
+        {
+          loader: 'file-loader'
+          options:
+            name: ->
+              if process.env.NODE_ENV is 'development'
+                '[path][name].[ext]'
+              else
+                '[hash].[ext]'
+
+        }
+        {
+          loader: 'image-webpack-loader'
+          # options:
+          #   bypassOnDebug: true
+        }
       ]
     }
     {
@@ -60,6 +71,12 @@ module.exports =
     {
       test: /\.(woff|woff2|eot|ttf|otf)$/,
       loader: 'file-loader'
+      options:
+        name: ->
+          if process.env.NODE_ENV is 'development'
+            '[path][name].[ext]'
+          else
+            '[hash].[ext]'
     }
     {
       test: /\.cson$/
