@@ -1,28 +1,18 @@
 HtmlWebpackPlugin = require 'html-webpack-plugin'
 HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
+ExtractTextPlugin = require('extract-text-webpack-plugin')
 webpack = require 'webpack'
 path = require 'path'
 CSON = require 'cson'
 manifest = CSON.load './src/manifest.cson'
 
-{
-  htmlConfig
-  externalsConfig
-  cssLoaderConfig
-} = manifest
+{ htmlConfig, externalsConfig } = manifest
 
 module.exports =
-  entry:
-    app: './src/index.coffee'
-    styles: './src/styles/index.styl'
+  entry: './src/index.coffee'
   output:
     path: path.resolve(__dirname, 'bin')
-    filename: ({name}) ->
-      switch name
-        when 'styles'
-          'bundle.css'
-        else
-          '[name].js'
+    filename: 'bundle.js'
   devtool: 'inline-source-map'
   devServer:
     contentBase: path.join(__dirname, 'bin')
@@ -39,29 +29,33 @@ module.exports =
     }
     {
       test: /\.styl$/
-      use:[
-        {
-          loader: 'style-loader'
-          options:
-            sourceMap: true
-        }
-        {
-          loader: 'css-loader'
-          options:
-            sourceMap: true
-        }
-        {
-          loader: 'postcss-loader'
-          options:
-            sourceMap: true
-        }
-        {
-          loader: 'stylus-relative-loader'
-          options:
-            sourceMap: true
-            preferPathResolver: 'webpack'
-        }
-      ]
+      use:
+        ExtractTextPlugin.extract
+          fallback:
+            {
+              loader: 'style-loader'
+              options:
+                sourceMap: true
+            }
+          use: [
+            {
+              loader: 'css-loader'
+              options:
+                sourceMap: true
+                importLoaders: 1
+            }
+            {
+              loader: 'postcss-loader'
+              options:
+                sourceMap: true
+            }
+            {
+              loader: 'stylus-loader'
+              options:
+                sourceMap: true
+                paths:'node_modules/bootstrap-stylus/stylus/'
+            }
+          ]
     }
     {
       test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -85,7 +79,7 @@ module.exports =
     extensions: [
       '.js', '.json'
       '.coffee', '.cson'
-      '.styl'
+      '.styl', '.css'
     ]
     modules: [
       'src'
@@ -96,4 +90,5 @@ module.exports =
     new webpack.NoEmitOnErrorsPlugin()
     new HtmlWebpackPlugin htmlConfig
     new HtmlWebpackExternalsPlugin externalsConfig
+    new ExtractTextPlugin 'styles.css'
   ]
