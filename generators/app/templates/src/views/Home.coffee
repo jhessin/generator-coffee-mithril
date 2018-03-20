@@ -28,3 +28,9 @@ export class Home
         'Most of the styling and layout of this demo page was done with '
         m 'a[href=https://semantic-ui.com/]', 'semantic-ui'
         '.'
+        m 'br'
+        'Check out '
+        m 'code',
+          'src/manifest.cson'
+        ' for info on adding CDN\'s updating the title or customizing
+        postCSS plugins.'
