@@ -10,24 +10,37 @@
 htmlConfig:
   title: 'My awesome App'
 
+# css-loader options
+cssLoaderConfig:
+  sourceMap: true
+  minimize: true
+  importLoaders: 1
 # Here are some options that get passed to html-webpack-externals-plugin
 # this is useful for CDN's
-externals: [
-  {
-    module: 'jquery'
-    entry:
-      path: 'https://code.jquery.com/jquery-3.3.1.min.js'
-      attributes:
-        integrity: 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
-        crossorigin: 'anonymous'
-    global: 'jQuery'
-  }
-]
+externalsConfig:
+  enabled: false
+  externals: [
+    {
+      module: 'jquery'
+      entry:
+        path: 'https://code.jquery.com/jquery-3.3.1.min.js'
+        attributes:
+          integrity: 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
+          crossorigin: 'anonymous'
+      global: 'jQuery'
+    }
+  ]
 
 # Finally we have the config for postCSS
 postcss:
   plugins:
     'postcss-use': {}
     'css-mqpacker': {}
-    'autoprefixer': {}
     'cssnano': {}
+    'postcss-will-change': {}
+    'autoprefixer': {}
+    'postcss-color-rgba-fallback': {}
+    'postcss-opacity': {}
+    'postcss-pseudoelements': {}
+    'postcss-vmin': {}
+    'pixrem': {}

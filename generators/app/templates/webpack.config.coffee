@@ -5,13 +5,24 @@ path = require 'path'
 CSON = require 'cson'
 manifest = CSON.load './src/manifest.cson'
 
-{ htmlConfig, externals } = manifest
+{
+  htmlConfig
+  externalsConfig
+  cssLoaderConfig
+} = manifest
 
 module.exports =
-  entry: './src/index.coffee'
+  entry:
+    app: './src/index.coffee'
+    styles: './src/styles/index.styl'
   output:
     path: path.resolve(__dirname, 'bin')
-    filename: 'bundle.js'
+    filename: ({name}) ->
+      switch name
+        when 'styles'
+          'bundle.css'
+        else
+          '[name].js'
   devtool: 'inline-source-map'
   devServer:
     contentBase: path.join(__dirname, 'bin')
@@ -27,22 +38,6 @@ module.exports =
       ]
     }
     {
-      test: /\.css$/
-      use: [
-        'style-loader'
-        {
-          loader: 'css-loader'
-          options:
-            modules: true
-        }
-        {
-          loader: 'postcss-loader'
-          options:
-            sourceMap: 'inline'
-        }
-      ]
-    }
-    {
       test: /\.styl$/
       use:[
         {
@@ -54,18 +49,17 @@ module.exports =
           loader: 'css-loader'
           options:
             sourceMap: true
-            importLoaders: 1
         }
         {
           loader: 'postcss-loader'
           options:
-            sourceMap: 'inline'
+            sourceMap: true
         }
         {
-          loader: 'stylus-loader'
+          loader: 'stylus-relative-loader'
           options:
             sourceMap: true
-            paths:'node_modules/bootstrap-stylus/stylus/'
+            preferPathResolver: 'webpack'
         }
       ]
     }
@@ -91,7 +85,7 @@ module.exports =
     extensions: [
       '.js', '.json'
       '.coffee', '.cson'
-      '.styl', '.css'
+      '.styl'
     ]
     modules: [
       'src'
@@ -101,5 +95,5 @@ module.exports =
     new webpack.HotModuleReplacementPlugin()
     new webpack.NoEmitOnErrorsPlugin()
     new HtmlWebpackPlugin htmlConfig
-    new HtmlWebpackExternalsPlugin {externals}
+    new HtmlWebpackExternalsPlugin externalsConfig
   ]

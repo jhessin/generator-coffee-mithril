@@ -26,14 +26,22 @@
     "image-webpack-loader": "^4.1.0",
     "mithril": "^1.1.6",
     "path": "^0.12.7",
+    "pixrem": "^4.0.1",
     "postcss": "^6.0.20",
+    "postcss-color-rgba-fallback": "^3.0.0",
     "postcss-loader": "^2.1.2",
+    "postcss-opacity": "^5.0.0",
+    "postcss-pseudoelements": "^5.0.0",
     "postcss-use": "^3.0.0",
+    "postcss-vmin": "^3.0.0",
+    "postcss-will-change": "^2.0.0",
     "semantic-ui-stylus": "^1.8.1",
     "style-loader": "^0.20.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "webpack": "^3.11.0",
+    "stylus-relative-loader": "^3.4.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
     "webpack-dev-server": "^2.11.1"
   }
 }
