@@ -12,22 +12,27 @@ htmlConfig:
 
 # Here are some options that get passed to html-webpack-externals-plugin
 # this is useful for CDN's
-externals: [
-  {
-    module: 'jquery'
-    entry:
-      path: 'https://code.jquery.com/jquery-3.3.1.min.js'
-      attributes:
-        integrity: 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
-        crossorigin: 'anonymous'
-    global: 'jQuery'
-  }
-]
+externalsConfig:
+  enabled: true
+  externals: [
+    {
+      module: 'mithril'
+      entry: 'https://cdnjs.cloudflare.com/ajax/libs/\
+              mithril/1.1.6/mithril.min.js'
+      global: 'm'
+    }
+  ]
 
 # Finally we have the config for postCSS
-postcss:
+postCssConfig:
   plugins:
     'postcss-use': {}
     'css-mqpacker': {}
-    'autoprefixer': {}
     'cssnano': {}
+    'postcss-will-change': {}
+    'autoprefixer': {}
+    'postcss-color-rgba-fallback': {}
+    'postcss-opacity': {}
+    'postcss-pseudoelements': {}
+    'postcss-vmin': {}
+    'pixrem': {}
