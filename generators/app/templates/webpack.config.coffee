@@ -7,10 +7,27 @@ path = require 'path'
 CSON = require 'cson'
 manifest = CSON.load './src/manifest.cson'
 
-{ htmlConfig, externalsConfig, postCssConfig } = manifest
+{ htmlConfig, externalsConfig } = manifest
 
 isProd = process.env.NODE_ENV is 'production'
 isDev = not isProd
+
+postCssConfig =
+  ident: 'postcss'
+  sourceMap: isDev
+  plugins: [
+    require('postcss-use')()
+    if isDev
+      require('css-mqpacker')()
+      require('cssnano')()
+    require('postcss-will-change')()
+    require('autoprefixer')()
+    require('postcss-color-rgba-fallback')()
+    require('postcss-opacity')()
+    require('postcss-pseudoelements')()
+    require('postcss-vmin')()
+    require('pixrem')()
+  ]
 
 module.exports =
   entry: './src/index.coffee'
@@ -60,19 +77,18 @@ module.exports =
               loader: 'css-loader'
               options:
                 sourceMap: isDev
-                minimize: true
+                minimize: isProd
                 importLoaders: 1
             }
             {
               loader: 'postcss-loader'
               options:
-                sourceMap: isDev
+                postCssConfig
             }
             {
               loader: 'stylus-loader'
               options:
                 sourceMap: isDev
-                paths:'node_modules/bootstrap-stylus/stylus/'
             }
           ]
     }

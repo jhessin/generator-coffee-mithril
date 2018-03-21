@@ -22,17 +22,3 @@ externalsConfig:
       global: 'm'
     }
   ]
-
-# Finally we have the config for postCSS
-postCssConfig:
-  plugins:
-    'postcss-use': {}
-    'css-mqpacker': {}
-    'cssnano': {}
-    'postcss-will-change': {}
-    'autoprefixer': {}
-    'postcss-color-rgba-fallback': {}
-    'postcss-opacity': {}
-    'postcss-pseudoelements': {}
-    'postcss-vmin': {}
-    'pixrem': {}
