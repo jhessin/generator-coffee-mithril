@@ -1,4 +1,3 @@
-import m from 'mithril'
 import { User, route } from 'models'
 
 # This is the User Form where you can actually change the name of a user.

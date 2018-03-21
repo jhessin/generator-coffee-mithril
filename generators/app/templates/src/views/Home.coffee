@@ -1,4 +1,3 @@
-import m from 'mithril'
 import logo from 'images/logo.svg'
 
 # This is the Home page taken directly from create-react-app

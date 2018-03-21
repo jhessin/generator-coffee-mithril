@@ -1,4 +1,3 @@
-import m from 'mithril'
 import { App } from './App'
 import { route } from 'models'
 import 'styles'

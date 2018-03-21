@@ -1,5 +1,3 @@
-import m from 'mithril'
-
 # This is a simple wraper function that wraps components up in a chain.
 # This is ideal for when using vanilla mithril routing i.e.
 # m.route document.body, '/',

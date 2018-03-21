@@ -1,4 +1,3 @@
-import m from 'mithril'
 import { route } from 'models'
 import { Home, Breadcrumb, UserList, UserForm } from 'views'
 

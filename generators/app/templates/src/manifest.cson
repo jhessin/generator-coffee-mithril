@@ -10,29 +10,21 @@
 htmlConfig:
   title: 'My awesome App'
 
-# css-loader options
-cssLoaderConfig:
-  sourceMap: true
-  minimize: true
-  importLoaders: 1
 # Here are some options that get passed to html-webpack-externals-plugin
 # this is useful for CDN's
 externalsConfig:
-  enabled: false
+  enabled: true
   externals: [
     {
-      module: 'jquery'
-      entry:
-        path: 'https://code.jquery.com/jquery-3.3.1.min.js'
-        attributes:
-          integrity: 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
-          crossorigin: 'anonymous'
-      global: 'jQuery'
+      module: 'mithril'
+      entry: 'https://cdnjs.cloudflare.com/ajax/libs/\
+              mithril/1.1.6/mithril.min.js'
+      global: 'm'
     }
   ]
 
 # Finally we have the config for postCSS
-postcss:
+postCssConfig:
   plugins:
     'postcss-use': {}
     'css-mqpacker': {}

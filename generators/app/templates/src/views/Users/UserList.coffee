@@ -1,4 +1,3 @@
-import m from 'mithril'
 import { User, route } from 'models'
 import userImage from 'images/user.jpg'
 

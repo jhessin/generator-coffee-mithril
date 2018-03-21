@@ -1,4 +1,5 @@
 HtmlWebpackPlugin = require 'html-webpack-plugin'
+UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 ExtractTextPlugin = require('extract-text-webpack-plugin')
 webpack = require 'webpack'
@@ -6,14 +7,20 @@ path = require 'path'
 CSON = require 'cson'
 manifest = CSON.load './src/manifest.cson'
 
-{ htmlConfig, externalsConfig } = manifest
+{ htmlConfig, externalsConfig, postCssConfig } = manifest
+
+isProd = process.env.NODE_ENV is 'production'
+isDev = not isProd
 
 module.exports =
   entry: './src/index.coffee'
   output:
     path: path.resolve(__dirname, 'bin')
     filename: 'bundle.js'
-  devtool: 'inline-source-map'
+  devtool: if isDev
+    'inline-source-map'
+  else
+    undefined
   devServer:
     contentBase: path.join(__dirname, 'bin')
     port: 3000
@@ -25,7 +32,7 @@ module.exports =
           loader: 'file-loader'
           options:
             name: ->
-              if process.env.NODE_ENV is 'development'
+              if isDev
                 '[path][name].[ext]'
               else
                 '[hash].[ext]'
@@ -46,24 +53,25 @@ module.exports =
             {
               loader: 'style-loader'
               options:
-                sourceMap: true
+                sourceMap: isDev
             }
           use: [
             {
               loader: 'css-loader'
               options:
-                sourceMap: true
+                sourceMap: isDev
+                minimize: true
                 importLoaders: 1
             }
             {
               loader: 'postcss-loader'
               options:
-                sourceMap: true
+                sourceMap: isDev
             }
             {
               loader: 'stylus-loader'
               options:
-                sourceMap: true
+                sourceMap: isDev
                 paths:'node_modules/bootstrap-stylus/stylus/'
             }
           ]
@@ -73,7 +81,7 @@ module.exports =
       loader: 'file-loader'
       options:
         name: ->
-          if process.env.NODE_ENV is 'development'
+          if isDev
             '[path][name].[ext]'
           else
             '[hash].[ext]'
@@ -103,7 +111,10 @@ module.exports =
       'node_modules'
     ]
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    if isDev
+      new webpack.HotModuleReplacementPlugin()
+    else
+      new UglifyJSPlugin()
     new webpack.NoEmitOnErrorsPlugin()
     new HtmlWebpackPlugin htmlConfig
     new HtmlWebpackExternalsPlugin externalsConfig

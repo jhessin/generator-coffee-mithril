@@ -6,9 +6,12 @@
   "scripts": {
     "start": "webpack-dev-server",
     "start:open": "webpack-dev-server --open",
-    "build": "webpack",
+    "build": "NODE_ENV=dev webpack",
+    "build:prod": "NODE_ENV=production webpack -p",
+    "watch": "NODE_ENV=dev webpack && webpack --watch",
     "clean": "rm -rf bin",
     "rebuild": "npm run clean && npm run build",
+    "rebuild:prod": "npm run clean && npm run build:prod",
     "killall": "killall node"
   },
   "dependencies": {
@@ -27,7 +30,6 @@
     "html-webpack-externals-plugin": "^3.7.0",
     "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^4.1.0",
-    "mithril": "^1.1.6",
     "path": "^0.12.7",
     "pixrem": "^4.0.1",
     "postcss": "^6.0.20",

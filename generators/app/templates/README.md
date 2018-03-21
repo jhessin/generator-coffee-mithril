@@ -6,6 +6,12 @@ Starter app generated with [generator-coffee-mithril](https://github.com/jhessin
 
 ## Setup
 
+I prefer yarn and it's more terse syntax to npm but you could easily run all of these with only npm.
+
+`yarn` = `npm install`
+
+`yarn [scriptName]` = `npm run [scriptName]`
+
 Init:
 
 ```bash
@@ -32,7 +38,12 @@ yarn build
 yarn rebuild
 ```
 
+And for production simply add :prod
 
+```bash
+yarn build:prod
+yarn rebuild:prod
+```
 
 If the dev server doesn't load there may be a server running already. To kill any active node server you can run (on *nix systems - not sure about windows):
 
