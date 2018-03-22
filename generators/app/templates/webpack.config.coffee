@@ -2,22 +2,46 @@ HtmlWebpackPlugin = require 'html-webpack-plugin'
 UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 ExtractTextPlugin = require('extract-text-webpack-plugin')
-poststylus = require('poststylus')
+poststylus = require 'poststylus'
+_ = require 'lodash'
 webpack = require 'webpack'
 path = require 'path'
 CSON = require 'cson'
 manifest = CSON.load './src/manifest.cson'
 
-{ htmlConfig, externalsConfig } = manifest
+{ htmlConfig, externalsConfig, postCssConfig } = manifest
 
 isProd = process.env.NODE_ENV is 'production'
 isDev = not isProd
 
-{
-  postCssConfigCommon
-  postCssConfigDev
-  postCssConfigProd
-} = manifest
+parsePlug = (plug)->
+  if typeof plug is 'string'
+    [require(plug)()]
+  else if typeof plug is 'object'
+    for key, value of plug
+      [require(key)(value)]
+
+postCssConfig = _.flattenDeep(
+  for key, value of postCssConfig
+    switch key
+      when 'dev'
+        if isDev
+          for plug in value
+            parsePlug(plug)
+        else
+          []
+      when 'prod'
+        if isProd
+          for plug in value
+            parsePlug(plug)
+        else
+          []
+      else
+        for plug in value
+          parsePlug(plug)
+)
+
+console.log 'postCssConfig = ', JSON.stringify(postCssConfig)
 
 module.exports =
   entry: './src/index.coffee'
@@ -68,6 +92,14 @@ module.exports =
               options:
                 sourceMap: isDev
                 minimize: isProd
+                importLoaders: 1
+            }
+            {
+              loader: 'postcss-loader'
+              options:
+                sourceMap: isDev
+                plugins:
+                  postCssConfig
             }
             {
               loader: 'stylus-loader'
@@ -116,18 +148,6 @@ module.exports =
     else
       new UglifyJSPlugin()
     new webpack.NoEmitOnErrorsPlugin()
-    new webpack.LoaderOptionsPlugin
-      options:
-        stylus:
-          use: [
-            poststylus [
-              postCssConfigCommon...
-              (if isDev
-                postCssConfigDev
-              else
-                postCssConfigProd)...
-              ]
-          ]
     new HtmlWebpackPlugin htmlConfig
     new HtmlWebpackExternalsPlugin externalsConfig
     new ExtractTextPlugin 'styles.css'
