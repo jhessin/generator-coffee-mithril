@@ -2,6 +2,7 @@ HtmlWebpackPlugin = require 'html-webpack-plugin'
 UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 ExtractTextPlugin = require('extract-text-webpack-plugin')
+poststylus = require('poststylus')
 webpack = require 'webpack'
 path = require 'path'
 CSON = require 'cson'
@@ -12,22 +13,11 @@ manifest = CSON.load './src/manifest.cson'
 isProd = process.env.NODE_ENV is 'production'
 isDev = not isProd
 
-postCssConfig =
-  ident: 'postcss'
-  sourceMap: isDev
-  plugins: [
-    require('postcss-use')()
-    if isDev
-      require('css-mqpacker')()
-      require('cssnano')()
-    require('postcss-will-change')()
-    require('autoprefixer')()
-    require('postcss-color-rgba-fallback')()
-    require('postcss-opacity')()
-    require('postcss-pseudoelements')()
-    require('postcss-vmin')()
-    require('pixrem')()
-  ]
+{
+  postCssConfigCommon
+  postCssConfigDev
+  postCssConfigProd
+} = manifest
 
 module.exports =
   entry: './src/index.coffee'
@@ -78,12 +68,6 @@ module.exports =
               options:
                 sourceMap: isDev
                 minimize: isProd
-                importLoaders: 1
-            }
-            {
-              loader: 'postcss-loader'
-              options:
-                postCssConfig
             }
             {
               loader: 'stylus-loader'
@@ -120,7 +104,7 @@ module.exports =
     extensions: [
       '.js', '.json'
       '.coffee', '.cson'
-      '.styl', '.css'
+      '.styl'
     ]
     modules: [
       'src'
@@ -132,6 +116,18 @@ module.exports =
     else
       new UglifyJSPlugin()
     new webpack.NoEmitOnErrorsPlugin()
+    new webpack.LoaderOptionsPlugin
+      options:
+        stylus:
+          use: [
+            poststylus [
+              postCssConfigCommon...
+              (if isDev
+                postCssConfigDev
+              else
+                postCssConfigProd)...
+              ]
+          ]
     new HtmlWebpackPlugin htmlConfig
     new HtmlWebpackExternalsPlugin externalsConfig
     new ExtractTextPlugin 'styles.css'

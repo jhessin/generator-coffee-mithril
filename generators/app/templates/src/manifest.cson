@@ -22,3 +22,18 @@ externalsConfig:
       global: 'm'
     }
   ]
+
+postCssConfigCommon: [
+  'postcss-use'
+  'autoprefixer'
+  'postcss-opacity'
+  'postcss-vmin'
+  'pixrem'
+]
+
+postCssConfigDev: []
+
+postCssConfigProd: [
+  'css-mqpacker'
+  'cssnano'
+]
