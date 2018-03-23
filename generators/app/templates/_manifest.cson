@@ -23,16 +23,21 @@ externalsConfig:
     }
   ]
 
-# Finally we have the config for postCSS
-postCssConfig:
-  plugins:
-    'postcss-use': {}
+# Here we have a list of postCss plugins. This will accept eithe
+postCssPlugins:
+  common:
+    'postcss-use':
+      modules: [
+        'autoprefixer'
+        'postcss-opacity'
+        'postcss-vmin'
+        'pixrem'
+      ]
+
+  # The following two arrays are the postCss plugins that will be loaded in each
+  # development environment.
+  dev: {}
+
+  prod:
     'css-mqpacker': {}
     'cssnano': {}
-    'postcss-will-change': {}
-    'autoprefixer': {}
-    'postcss-color-rgba-fallback': {}
-    'postcss-opacity': {}
-    'postcss-pseudoelements': {}
-    'postcss-vmin': {}
-    'pixrem': {}
