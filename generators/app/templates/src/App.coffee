@@ -6,7 +6,7 @@ import { Home, Breadcrumb, UserList, UserForm } from 'views'
 export class App
   view: ->
     m '.app.ui.container',
-      m '.ui.huge.top.attached.tabular.menu',
+      m '.ui.huge.top.attached.tabular.menu.inverted',
         m "div.item#{route.isActive('/')}",
           onclick: -> route.set('/')
           'Home'
@@ -15,7 +15,7 @@ export class App
           'Users'
       m ".ui.bottom.attached.tab.segment#{route.isActive('/')}",
         m Home
-      m ".ui.bottom.attached.tab.segment#{route.isActive(/users/)}",
+      m ".ui.bottom.attached.tab.segment.inverted#{route.isActive(/users/)}",
         m Breadcrumb,
           if route.params.id
             m UserForm,

@@ -6,7 +6,7 @@ import { User, route } from 'models'
 export class UserForm
   oninit: (vnode) -> User.load vnode.attrs.id
   view: ->
-    m 'form.ui.huge.form',
+    m 'form.ui.huge.form.inverted',
       onsubmit: (e) ->
         e.preventDefault()
         User.save()

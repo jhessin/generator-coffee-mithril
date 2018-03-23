@@ -7,8 +7,8 @@ export class UserList
   oninit:->
     User.loadList()
   view:->
-    m '.ui.segment',
-      m '.ui.relaxed.divided.list.huge',
+    m '.ui.container',
+      m '.ui.relaxed.divided.list.inverted.huge',
         User.list.map (user) ->
           { id } = user
           m 'a.item.animate',
