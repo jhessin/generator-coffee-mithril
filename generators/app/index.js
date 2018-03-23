@@ -59,6 +59,7 @@ module.exports = class extends Generator {
       this.destinationPath('src/manifest.cson'),
       this.props
     );
+
     this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
     this.fs.copy(
       this.templatePath('webpack.config.coffee'),
@@ -67,6 +68,10 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath('coffeelint.json'),
       this.destinationPath('coffeelint.json')
+    );
+    this.fs.copy(
+      this.templatePath('postcss.config.js'),
+      this.destinationPath('postcss.config.js')
     );
   }
 

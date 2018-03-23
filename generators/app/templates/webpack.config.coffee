@@ -2,46 +2,15 @@ HtmlWebpackPlugin = require 'html-webpack-plugin'
 UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 ExtractTextPlugin = require('extract-text-webpack-plugin')
-poststylus = require 'poststylus'
-_ = require 'lodash'
 webpack = require 'webpack'
 path = require 'path'
 CSON = require 'cson'
 manifest = CSON.load './src/manifest.cson'
 
-{ htmlConfig, externalsConfig, postCssConfig } = manifest
+{ htmlConfig, externalsConfig } = manifest
 
 isProd = process.env.NODE_ENV is 'production'
 isDev = not isProd
-
-parsePlug = (plug)->
-  if typeof plug is 'string'
-    [require(plug)()]
-  else if typeof plug is 'object'
-    for key, value of plug
-      [require(key)(value)]
-
-postCssConfig = _.flattenDeep(
-  for key, value of postCssConfig
-    switch key
-      when 'dev'
-        if isDev
-          for plug in value
-            parsePlug(plug)
-        else
-          []
-      when 'prod'
-        if isProd
-          for plug in value
-            parsePlug(plug)
-        else
-          []
-      else
-        for plug in value
-          parsePlug(plug)
-)
-
-console.log 'postCssConfig = ', JSON.stringify(postCssConfig)
 
 module.exports =
   entry: './src/index.coffee'
@@ -98,8 +67,6 @@ module.exports =
               loader: 'postcss-loader'
               options:
                 sourceMap: isDev
-                plugins:
-                  postCssConfig
             }
             {
               loader: 'stylus-loader'

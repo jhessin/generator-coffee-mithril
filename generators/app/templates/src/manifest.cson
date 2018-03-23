@@ -24,8 +24,8 @@ externalsConfig:
   ]
 
 # Here we have a list of postCss plugins. This will accept eithe
-postCssConfig:
-  common: [
+postCssPlugins:
+  common:
     'postcss-use':
       modules: [
         'autoprefixer'
@@ -33,15 +33,11 @@ postCssConfig:
         'postcss-vmin'
         'pixrem'
       ]
-  ]
 
   # The following two arrays are the postCss plugins that will be loaded in each
   # development environment.
-  dev: [
+  dev: {}
 
-  ]
-
-  prod: [
-    'css-mqpacker'
-    'cssnano'
-  ]
+  prod:
+    'css-mqpacker': {}
+    'cssnano': {}
