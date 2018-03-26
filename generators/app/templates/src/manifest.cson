@@ -26,32 +26,18 @@ externalsConfig:
 # Here we have a list of postCss plugins. This will accept eithe
 postCssPlugins:
   common: # always loaded
-    'postcss-use':
-      # These are the options passed to postcss-use
-      modules: [
-        # These modules are not loaded but are made available
-        # for use by the @use directive (for hot module reloading)
-        'autoprefixer'
-        'pixrem'
-        /^postcss/
+    # Plugins can be used directly and options passed like so:
+    # 'postcss-nav': {}
+    'postcss-pxtorem':
+      prop_white_list: [
+        'width', 'height', 'font'
+        'font-size', 'line-height'
+        'letter-spacing'
       ]
-      options:
-        # Here you can pass options to modules loaded with @use
-        'postcss-pxtorem':
-          prop_white_list: [
-            'width', 'height', 'font'
-            'font-size', 'line-height'
-            'letter-spacing'
-          ]
-
-    # Plugins can also be used directly and options passed like so:
-    # 'postcss-pxtorem':
-    #   prop_white_list: [
-    #     'width', 'height', 'font'
-    #     'font-size', 'line-height'
-    #     'letter-spacing'
-    #   ]
-    # 'pixrem': {}
+    'autoprefixer': {}
+    'postcss-opacity': {}
+    'postcss-vmin': {}
+    'pixrem': {}
     'postcss-center': {}
 
   # The following two arrays are the postCss plugins that will be loaded in each

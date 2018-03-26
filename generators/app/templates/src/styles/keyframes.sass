@@ -1,17 +1,14 @@
 // All keyframe animations. I like to keep these things together as they are the most fun to play with.
 // This is actually the only thing that I didn't outright 'steal' from one of the tutorials or demo packages.
 
-// Stylus variables are super simple (just like normal variables)
 $shadow: 1px 1px 3px 3px #ccc
 
-// you can even have variable blocks
 @mixin animate()
   display: block
   box-shadow: $shadow
   &:active
     animation: down 1s step-start
 
-// and use them just like this...
 .animate
   @include animate()
 
