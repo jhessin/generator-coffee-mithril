@@ -25,19 +25,26 @@ externalsConfig:
 
 # Here we have a list of postCss plugins. This will accept eithe
 postCssPlugins:
-  common:
-    'postcss-use':
-      modules: [
-        'autoprefixer'
-        'postcss-opacity'
-        'postcss-vmin'
-        'pixrem'
+  common: # always loaded
+    # Plugins can be used directly and options passed like so:
+    # 'postcss-nav': {}
+    'postcss-pxtorem':
+      prop_white_list: [
+        'width', 'height', 'font'
+        'font-size', 'line-height'
+        'letter-spacing'
       ]
+    'autoprefixer': {}
+    'postcss-opacity': {}
+    'postcss-vmin': {}
+    'pixrem': {}
+    'postcss-center': {}
 
   # The following two arrays are the postCss plugins that will be loaded in each
   # development environment.
-  dev: {}
+  dev: # loaded in dev mode
+    {}
 
-  prod:
+  prod: # loaded in production mode
     'css-mqpacker': {}
     'cssnano': {}
