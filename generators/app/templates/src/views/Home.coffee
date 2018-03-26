@@ -31,5 +31,10 @@ export class Home
         'Check out '
         m 'code',
           'src/manifest.cson'
-        ' for info on adding CDN\'s updating the title or customizing
-        postCSS plugins.'
+        ' for info on adding '
+        m 'a[href=https://cdnjs.com/]', 'CDN\'s'
+        ' updating the title or customizing '
+        m 'a[href=http://postcss.org/]', 'PostCSS'
+        ' '
+        m 'a[href=https://www.postcss.parts/]', 'plugins'
+        '.'
