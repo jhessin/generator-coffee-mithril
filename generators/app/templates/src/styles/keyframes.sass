@@ -2,24 +2,24 @@
 // This is actually the only thing that I didn't outright 'steal' from one of the tutorials or demo packages.
 
 // Stylus variables are super simple (just like normal variables)
-shadow = 1px 1px 3px 3px #ccc
+$shadow: 1px 1px 3px 3px #ccc
 
 // you can even have variable blocks
-animate =
+@mixin animate()
   display: block
-  box-shadow: shadow
+  box-shadow: $shadow
   &:active
     animation: down 1s step-start
 
 // and use them just like this...
 .animate
-  {animate}
+  @include animate()
 
 // I threw this together because I like animated buttons.
 @keyframes down
   0%
     transform: translate(0, 0)
-    box-shadow: shadow
+    box-shadow: $shadow
   100%
     transform: translate(1px, 3px)
     box-shadow: none

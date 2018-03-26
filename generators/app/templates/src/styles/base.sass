@@ -1,3 +1,4 @@
+@use postcss-nav
 // This is where basic customization should go
 // body, *, and any simple class customizations
 // that may be used app-wide
@@ -5,7 +6,8 @@
 // I pulled this straight from React's create-react-app generated code
 body
   // except the font - that I pulled from Mithril's tutorial
-  font: normal 16px Verdana
+  // font: normal 16px Verdana
+  font-family: "Open Sans", fontstack("Arial")
   margin: 0
   padding: 0
 
@@ -18,3 +20,7 @@ body
   height: 100vh
   margin: 0
   padding: 0
+
+.ui.tabular.menu
+  content: 'test'
+  @nav

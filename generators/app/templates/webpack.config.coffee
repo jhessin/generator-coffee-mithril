@@ -46,7 +46,7 @@ module.exports =
       ]
     }
     {
-      test: /\.styl$/
+      test: /\.(sass|scss)$/
       use:
         ExtractTextPlugin.extract
           fallback:
@@ -69,7 +69,7 @@ module.exports =
                 sourceMap: isDev
             }
             {
-              loader: 'stylus-loader'
+              loader: 'sass-loader'
               options:
                 sourceMap: isDev
             }
@@ -103,7 +103,7 @@ module.exports =
     extensions: [
       '.js', '.json'
       '.coffee', '.cson'
-      '.styl'
+      '.sass', '.scss'
     ]
     modules: [
       'src'
