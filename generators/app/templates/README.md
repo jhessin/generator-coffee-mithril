@@ -1,4 +1,4 @@
-# A Mithril project with CoffeeScript, ES6, and Stylus
+# A Mithril project with CoffeeScript, ES6, and Sass/PostCSS
 
 Compatible with Mithril 1.x
 

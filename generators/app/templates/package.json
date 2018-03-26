@@ -40,7 +40,6 @@
     "postcss-pxtorem": "^4.0.1",
     "postcss-vmin": "^3.0.0",
     "sass-loader": "^6.0.7",
-    "semantic-ui-stylus": "^1.8.1",
     "style-loader": "^0.20.2",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
