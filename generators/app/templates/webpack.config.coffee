@@ -24,59 +24,9 @@ module.exports =
   devServer:
     contentBase: path.join(__dirname, 'bin')
     port: 3000
-  module: rules: [
-    {
-      test: /\.(gif|png|jpe?g|svg)$/i
-      use: [
-        {
-          loader: 'file-loader'
-          options:
-            name: ->
-              if isDev
-                '[path][name].[ext]'
-              else
-                '[hash].[ext]'
-
-        }
-        {
-          loader: 'image-webpack-loader'
-          # options:
-          #   bypassOnDebug: true
-        }
-      ]
-    }
-    {
-      test: /\.(sass|scss)$/
-      use:
-        ExtractTextPlugin.extract
-          fallback:
-            {
-              loader: 'style-loader'
-              options:
-                sourceMap: isDev
-            }
-          use: [
-            {
-              loader: 'css-loader'
-              options:
-                sourceMap: isDev
-                minimize: isProd
-                importLoaders: 1
-            }
-            {
-              loader: 'postcss-loader'
-              options:
-                sourceMap: isDev
-            }
-            {
-              loader: 'sass-loader'
-              options:
-                sourceMap: isDev
-            }
-          ]
-    }
-    {
-      test: /\.(woff|woff2|eot|ttf|otf)$/,
+  module: rules: [{
+    test: /\.(gif|png|jpe?g|svg)$/i
+    use: [{
       loader: 'file-loader'
       options:
         name: ->
@@ -84,31 +34,77 @@ module.exports =
             '[path][name].[ext]'
           else
             '[hash].[ext]'
-    }
-    {
-      test: /\.cson$/
-      loader: 'cson-loader'
-    }
-    {
-      test: /\.(coffee)$/
-      use:[
-        loader: 'coffee-loader'
-        options:
-          transpile:
-            presets: ['env']
-      ]
-    }
-  ]
+      }
+      'image-webpack-loader'
+    ]}, {
+    test: /\.css$/
+    use:
+      ExtractTextPlugin.extract
+        fallback:
+          loader: 'style-loader'
+          options:
+            sourceMap: isDev
+        use: [{
+          loader: 'css-loader'
+          options:
+            sourceMap: isDev
+            minimize: isProd
+            importLoaders: 1
+          }, {
+            loader: 'postcss-loader'
+            options:
+              sourceMap: isDev
+        }]
+  }, {
+    test: /\.(sass|scss)$/
+    use:
+      ExtractTextPlugin.extract
+        fallback:
+          loader: 'style-loader'
+          options:
+            sourceMap: isDev
+        use: [{
+          loader: 'css-loader'
+          options:
+            sourceMap: isDev
+            minimize: isProd
+            importLoaders: 1
+        }, {
+          loader: 'postcss-loader'
+          options:
+            sourceMap: isDev
+        }, {
+          loader: 'sass-loader'
+          options:
+            sourceMap: isDev
+  }]}, {
+    test: /\.(woff|woff2|eot|ttf|otf)$/,
+    loader: 'file-loader'
+    options:
+      name: ->
+        if isDev
+          '[path][name].[ext]'
+        else
+          '[hash].[ext]'
+  }, {
+    test: /\.cson$/
+    loader: 'cson-loader'
+  }, {
+    test: /\.(coffee)$/
+    use:[
+      loader: 'coffee-loader'
+      options:
+        transpile:
+          presets: ['env']
+  ]}]
   resolve:
     extensions: [
       '.js', '.json'
       '.coffee', '.cson'
-      '.sass', '.scss'
-    ]
+      '.sass', '.scss', '.css']
     modules: [
       'src'
-      'node_modules'
-    ]
+      'node_modules']
   plugins: [
     if isDev
       new webpack.HotModuleReplacementPlugin()
