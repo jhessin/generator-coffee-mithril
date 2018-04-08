@@ -60,3 +60,6 @@ typings/
 # operating system files
 .DS_Store
 .vscode
+
+# test directory
+test

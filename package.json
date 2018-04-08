@@ -39,6 +39,8 @@
   },
   "dependencies": {
     "chalk": "^2.1.0",
+    "coffeescript": "^2.2.4",
+    "rimraf": "^2.6.2",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
