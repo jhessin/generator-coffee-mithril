@@ -2,6 +2,9 @@
 
 > Generate a mithril project using CoffeeScript, ES6, and Stylus.
 
+# NOTICE: ARCHIVED
+> I am no longer developing this project. I have caved in to peer pressure and moved to typescript (even though it isn't nearly as pretty). Please consider forking (or using an existing fork) if you want to use this project.
+
 ## Installation
 
 ### Option 1: Global node install
